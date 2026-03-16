@@ -382,10 +382,10 @@
             line-height: 1.8;
         }
 
-        /* ===== GRADE DE TÓPICOS ===== */
+        /* ===== GRADE DE TÓPICOS - AGORA COM LINKS PARA CONTEÚDO DE ESTUDO ===== */
         .topics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
             max-width: 1200px;
             margin: 0 auto;
@@ -434,6 +434,7 @@
             transform: translateX(10px);
             border-color: var(--primary);
             background: rgba(30, 30, 30, 0.95);
+            box-shadow: var(--shadow-gold);
         }
 
         .topic-item i {
@@ -454,6 +455,10 @@
             transition: 0.3s;
         }
 
+        .topic-link:hover .topic-item span {
+            color: var(--primary);
+        }
+
         /* ===== CARDS DE PROJETOS ===== */
         .projects-container {
             display: grid;
@@ -472,6 +477,9 @@
             border: 1px solid rgba(241, 196, 15, 0.1);
             height: 100%;
             position: relative;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         .project-card:hover {
@@ -540,7 +548,7 @@
             transition: 0.3s;
         }
 
-        .project-link:hover {
+        .project-card:hover .project-link {
             gap: 1rem;
             color: #fff;
         }
@@ -879,6 +887,27 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
+
+        /* ===== BADGE DE CONTEÚDO ===== */
+        .study-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary);
+            color: var(--dark);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .topic-link:hover .study-badge {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -942,94 +971,189 @@
         </div>
     </section>
 
-    <!-- Tópicos -->
+    <!-- Tópicos - AGORA COM LINKS PARA CONTEÚDO DE ESTUDO ESPECÍFICO -->
     <section id="topicos" class="section">
         <h2 class="section-title">O que você vai <span>aprender</span></h2>
         <div class="topics-grid">
-            <a href="https://www.todamateria.com.br/exercicios-de-matematica/" target="_blank" class="topic-link" style="--i:1">
+            <!-- Aritmética -->
+            <a href="https://brasilescola.uol.com.br/matematica/aritmetica.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:1">
                 <div class="topic-item">
                     <i class="fas fa-calculator"></i>
                     <span>Aritmética e operações</span>
+                    <span class="study-badge">Aulas</span>
                 </div>
             </a>
-            <a href="https://www.todamateria.com.br/exercicios-de-geometria-plana/" target="_blank" class="topic-link" style="--i:2">
+            
+            <!-- Geometria Plana -->
+            <a href="https://www.todamateria.com.br/geometria-plana/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:2">
                 <div class="topic-item">
                     <i class="fas fa-shapes"></i>
                     <span>Geometria plana</span>
+                    <span class="study-badge">Teoria</span>
                 </div>
             </a>
-            <a href="https://www.todamateria.com.br/exercicios-de-algebra/" target="_blank" class="topic-link" style="--i:3">
+            
+            <!-- Geometria Espacial -->
+            <a href="https://www.todamateria.com.br/geometria-espacial/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:3">
+                <div class="topic-item">
+                    <i class="fas fa-cube"></i>
+                    <span>Geometria espacial</span>
+                    <span class="study-badge">3D</span>
+                </div>
+            </a>
+            
+            <!-- Álgebra -->
+            <a href="https://brasilescola.uol.com.br/matematica/algebra.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:4">
                 <div class="topic-item">
                     <i class="fas fa-square-root-alt"></i>
                     <span>Álgebra e funções</span>
+                    <span class="study-badge">Fórmulas</span>
                 </div>
             </a>
-            <a href="https://www.todamateria.com.br/exercicios-de-estatistica/" target="_blank" class="topic-link" style="--i:4">
+            
+            <!-- Estatística -->
+            <a href="https://www.todamateria.com.br/estatistica/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:5">
                 <div class="topic-item">
                     <i class="fas fa-chart-line"></i>
                     <span>Estatística</span>
+                    <span class="study-badge">Dados</span>
                 </div>
             </a>
-            <a href="https://www.todamateria.com.br/exercicios-de-trigonometria/" target="_blank" class="topic-link" style="--i:5">
+            
+            <!-- Probabilidade -->
+            <a href="https://brasilescola.uol.com.br/matematica/probabilidade.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:6">
+                <div class="topic-item">
+                    <i class="fas fa-dice"></i>
+                    <span>Probabilidade</span>
+                    <span class="study-badge">Chances</span>
+                </div>
+            </a>
+            
+            <!-- Trigonometria -->
+            <a href="https://www.todamateria.com.br/trigonometria/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:7">
                 <div class="topic-item">
                     <i class="fas fa-infinity"></i>
                     <span>Trigonometria</span>
+                    <span class="study-badge">Ângulos</span>
                 </div>
             </a>
-            <a href="https://www.todamateria.com.br/exercicios-de-matematica-financeira/" target="_blank" class="topic-link" style="--i:6">
+            
+            <!-- Matemática Financeira -->
+            <a href="https://brasilescola.uol.com.br/matematica/matematica-financeira.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:8">
                 <div class="topic-item">
                     <i class="fas fa-coins"></i>
                     <span>Matemática financeira</span>
+                    <span class="study-badge">Juros</span>
                 </div>
             </a>
-            <a href="https://www.todamateria.com.br/raciocinio-logico-exercicios/" target="_blank" class="topic-link" style="--i:7">
+            
+            <!-- Raciocínio Lógico -->
+            <a href="https://www.todamateria.com.br/raciocinio-logico/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:9">
                 <div class="topic-item">
                     <i class="fas fa-brain"></i>
                     <span>Raciocínio lógico</span>
+                    <span class="study-badge">Desafios</span>
                 </div>
             </a>
-            <a href="https://www.todamateria.com.br/desafios-de-matematica/" target="_blank" class="topic-link" style="--i:8">
+            
+            <!-- Conjuntos -->
+            <a href="https://brasilescola.uol.com.br/matematica/conjuntos.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:10">
                 <div class="topic-item">
-                    <i class="fas fa-trophy"></i>
-                    <span>Desafios</span>
+                    <i class="fas fa-circle-nodes"></i>
+                    <span>Teoria dos conjuntos</span>
+                    <span class="study-badge">Diagramas</span>
+                </div>
+            </a>
+            
+            <!-- Equações -->
+            <a href="https://www.todamateria.com.br/equacoes-matematicas/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:11">
+                <div class="topic-item">
+                    <i class="fas fa-equals"></i>
+                    <span>Equações e inequações</span>
+                    <span class="study-badge">Resolver</span>
+                </div>
+            </a>
+            
+            <!-- Cálculo (avançado) -->
+            <a href="https://brasilescola.uol.com.br/matematica/calculo.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:12">
+                <div class="topic-item">
+                    <i class="fas fa-chart-area"></i>
+                    <span>Cálculo diferencial</span>
+                    <span class="study-badge">Avançado</span>
+                </div>
+            </a>
+            
+            <!-- Números complexos -->
+            <a href="https://www.todamateria.com.br/numeros-complexos/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:13">
+                <div class="topic-item">
+                    <i class="fas fa-square"></i>
+                    <span>Números complexos</span>
+                    <span class="study-badge">i</span>
+                </div>
+            </a>
+            
+            <!-- Matrizes -->
+            <a href="https://brasilescola.uol.com.br/matematica/matriz-determinante.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:14">
+                <div class="topic-item">
+                    <i class="fas fa-table"></i>
+                    <span>Matrizes e determinantes</span>
+                    <span class="study-badge">Tabelas</span>
+                </div>
+            </a>
+            
+            <!-- Logaritmos -->
+            <a href="https://www.todamateria.com.br/logaritmo/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:15">
+                <div class="topic-item">
+                    <i class="fas fa-chart-simple"></i>
+                    <span>Logaritmos</span>
+                    <span class="study-badge">Log</span>
+                </div>
+            </a>
+            
+            <!-- Progressões -->
+            <a href="https://brasilescola.uol.com.br/matematica/progressoes.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:16">
+                <div class="topic-item">
+                    <i class="fas fa-arrow-trend-up"></i>
+                    <span>Progressões (PA/PG)</span>
+                    <span class="study-badge">Sequências</span>
                 </div>
             </a>
         </div>
     </section>
 
-    <!-- Projetos -->
+    <!-- Projetos - AGORA TAMBÉM COM LINKS -->
     <section id="projetos" class="section">
         <h2 class="section-title">Projetos em <span>Ação</span></h2>
         <div class="projects-container">
-            <div class="project-card">
+            <a href="https://www.todamateria.com.br/geometria-sagrada/" target="_blank" class="project-card">
                 <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1509228468518-180dd4864904?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
                 <div class="project-info">
                     <span class="project-tag">Matemática e Arte</span>
                     <h3>Geometria nas construções</h3>
                     <p>Explore como formas geométricas são aplicadas em prédios históricos e crie suas próprias maquetes.</p>
-                    <a href="#" class="project-link">Ver projeto <i class="fas fa-arrow-right"></i></a>
+                    <span class="project-link">Ver projeto <i class="fas fa-arrow-right"></i></span>
                 </div>
-            </div>
+            </a>
             
-            <div class="project-card">
+            <a href="https://www.todamateria.com.br/estatistica-exemplos/" target="_blank" class="project-card">
                 <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1554224154-26032ffc0d07?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
                 <div class="project-info">
                     <span class="project-tag">Ciência de Dados</span>
                     <h3>Estatística no cotidiano</h3>
                     <p>Analise dados reais da sua escola e crie visualizações impressionantes.</p>
-                    <a href="#" class="project-link">Ver projeto <i class="fas fa-arrow-right"></i></a>
+                    <span class="project-link">Ver projeto <i class="fas fa-arrow-right"></i></span>
                 </div>
-            </div>
+            </a>
             
-            <div class="project-card">
+            <a href="https://www.todamateria.com.br/logica-de-programacao/" target="_blank" class="project-card">
                 <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
                 <div class="project-info">
                     <span class="project-tag">Programação</span>
                     <h3>Lógica com Python</h3>
                     <p>Aprenda programação resolvendo problemas matemáticos e crie seus próprios jogos.</p>
-                    <a href="#" class="project-link">Ver projeto <i class="fas fa-arrow-right"></i></a>
+                    <span class="project-link">Ver projeto <i class="fas fa-arrow-right"></i></span>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 
