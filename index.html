@@ -3,29 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto MathEdu | Matemática para todos</title>
+    <title>MathEdu | Plataforma Inteligente de Matemática</title>
+    
     <!-- Google Fonts e Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Animate.css para animações -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
     <style>
+        /* ===== VARIÁVEIS GLOBAIS ===== */
+        :root {
+            --primary: #f1c40f;
+            --primary-dark: #d4ac0d;
+            --secondary: #2ecc71;
+            --dark: #0a0a0a;
+            --dark-light: #1a1a1a;
+            --gray: #2d2d2d;
+            --text: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f1c40f, #e67e22);
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.4);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.5);
+            --shadow-gold: 0 5px 20px rgba(241, 196, 15, 0.3);
+        }
+
+        /* ===== RESET E ESTILOS BASE ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: #e0e0e0;
-            background-color: #0a0a0a;
-            position: relative;
-            min-height: 100vh;
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* Camada de fundo com operações matemáticas */
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--dark);
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ===== FUNDO ANIMADO COM OPERAÇÕES ===== */
         body::before {
             content: '';
             position: fixed;
@@ -33,43 +62,84 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="10" y="20" font-family="Arial" font-size="14" fill="%23333333" opacity="0.15">2 + 2 = 4</text><text x="60" y="45" font-family="Arial" font-size="16" fill="%23333333" opacity="0.15">3 × 3 = 9</text><text x="20" y="80" font-family="Arial" font-size="12" fill="%23333333" opacity="0.15">√16 = 4</text><text x="70" y="90" font-family="Arial" font-size="14" fill="%23333333" opacity="0.15">7 - 3 = 4</text><text x="30" y="30" font-family="Arial" font-size="18" fill="%23333333" opacity="0.15">π ≈ 3.14</text><text x="80" y="15" font-family="Arial" font-size="13" fill="%23333333" opacity="0.15">8 ÷ 2 = 4</text><text x="5" y="60" font-family="Arial" font-size="15" fill="%23333333" opacity="0.15">5² = 25</text><text x="45" y="70" font-family="Arial" font-size="14" fill="%23333333" opacity="0.15">sin(90°) = 1</text><text x="90" y="55" font-family="Arial" font-size="12" fill="%23333333" opacity="0.15">log 100 = 2</text></svg>'),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><text x="15" y="25" font-family="Arial" font-size="14" fill="%23333333" opacity="0.15">12 + 8 = 20</text><text x="70" y="60" font-family="Arial" font-size="16" fill="%23333333" opacity="0.15">9 - 5 = 4</text><text x="25" y="100" font-family="Arial" font-size="13" fill="%23333333" opacity="0.15">7 × 6 = 42</text><text x="85" y="15" font-family="Arial" font-size="15" fill="%23333333" opacity="0.15">15 ÷ 3 = 5</text><text x="5" y="45" font-family="Arial" font-size="14" fill="%23333333" opacity="0.15">3² = 9</text><text x="45" y="85" font-family="Arial" font-size="12" fill="%23333333" opacity="0.15">√144 = 12</text><text x="95" y="105" font-family="Arial" font-size="16" fill="%23333333" opacity="0.15">e^(0) = 1</text></svg>');
-            background-repeat: repeat;
-            background-position: 0 0, 50px 30px;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(241, 196, 15, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(46, 204, 113, 0.03) 0%, transparent 50%);
             pointer-events: none;
             z-index: 0;
+            animation: pulse 8s ease-in-out infinite;
         }
 
-        /* Garantir que todo conteúdo fique acima do fundo */
-        .navbar, .hero, .section, footer {
-            position: relative;
-            z-index: 1;
+        .math-symbols {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.1;
         }
 
-        /* Ajuste das seções para fundo escuro */
+        .math-symbol {
+            position: absolute;
+            color: var(--primary);
+            font-size: 24px;
+            font-weight: bold;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        /* ===== SCROLL PERSONALIZADO ===== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* ===== CABEÇALHO MODERNO ===== */
         .navbar {
-            background: linear-gradient(135deg, #000000, #1a1a1a);
-            color: white;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
             padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            border-bottom: 1px solid #f1c40f33;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--primary);
+            box-shadow: var(--shadow-lg);
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: white;
-        }
-
-        .logo span {
-            color: #f1c40f;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
         }
 
         .nav-links {
@@ -79,144 +149,245 @@
         }
 
         .nav-links a {
-            color: #e0e0e0;
+            color: var(--text);
             text-decoration: none;
             font-weight: 500;
             transition: 0.3s;
-            padding: 0.5rem 0;
-            border-bottom: 2px solid transparent;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::before {
+            width: 80%;
         }
 
         .nav-links a:hover {
-            border-bottom-color: #f1c40f;
-            color: #f1c40f;
+            color: var(--primary);
+            background: rgba(241, 196, 15, 0.1);
         }
 
-        /* Seção Hero */
+        /* ===== HERO SECTION IMPACTANTE ===== */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-            min-height: 500px;
+            min-height: 90vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: white;
-            padding: 2rem;
-            border-bottom: 1px solid #f1c40f33;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(135deg, rgba(0,0,0,0.9) 0%, transparent 100%),
+                url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat fixed;
+            z-index: -1;
+            animation: zoom 20s ease-in-out infinite;
+        }
+
+        @keyframes zoom {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            line-height: 1.2;
         }
 
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
-            color: #e0e0e0;
+            color: var(--text-muted);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .btn {
             display: inline-block;
-            background: #f1c40f;
-            color: #000000;
-            padding: 0.8rem 2rem;
+            padding: 1rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             transition: 0.3s;
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .btn:hover {
-            background: #d4ac0d;
-            transform: scale(1.05);
-            color: #000;
+        .btn-primary {
+            background: var(--primary);
+            color: var(--dark);
+            box-shadow: var(--shadow-gold);
         }
 
-        /* Seções gerais */
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(241, 196, 15, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        /* ===== SEÇÕES GERAIS ===== */
         .section {
-            padding: 4rem 5%;
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(2px);
-            margin: 1rem 0;
-            border-radius: 20px;
+            padding: 5rem 5%;
+            position: relative;
+            z-index: 1;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #ffffff;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            color: #fff;
             position: relative;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            font-weight: 700;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--gradient-2);
         }
 
         .section-title::after {
             content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: #f1c40f;
-            margin: 0.5rem auto 0;
-            border-radius: 2px;
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
         }
 
-        /* Cards de recursos */
+        /* ===== CARDS DE RECURSOS ===== */
         .features-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .feature-card {
-            background: rgba(20, 20, 20, 0.95);
-            border-radius: 15px;
-            padding: 2rem 1.5rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            transition: 0.3s;
+            background: rgba(20, 20, 20, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            transition: 0.4s;
             text-align: center;
-            border: 1px solid #f1c40f33;
-            backdrop-filter: blur(5px);
+            border: 1px solid rgba(241, 196, 15, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(241, 196, 15, 0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(241, 196, 15, 0.2);
-            border-color: #f1c40f;
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-gold);
         }
 
         .feature-icon {
-            font-size: 3rem;
-            color: #f1c40f;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .feature-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: #ffffff;
+            color: #fff;
         }
 
         .feature-card p {
-            color: #b0b0b0;
+            color: var(--text-muted);
+            line-height: 1.8;
         }
 
-        /* Área de matérias / tópicos - AGORA COMO LINKS */
+        /* ===== GRADE DE TÓPICOS ===== */
         .topics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1100px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -225,170 +396,292 @@
             color: inherit;
             display: block;
             transition: 0.3s;
+            animation: fadeInUp 0.5s ease backwards;
+            animation-delay: calc(var(--i) * 0.1s);
         }
 
         .topic-item {
-            background: rgba(20, 20, 20, 0.95);
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            background: rgba(20, 20, 20, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.8rem;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.2rem;
             transition: 0.3s;
-            border: 1px solid #f1c40f33;
+            border: 1px solid rgba(241, 196, 15, 0.1);
             height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .topic-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gradient-2);
+            transition: 0.3s;
+        }
+
+        .topic-link:hover .topic-item::after {
+            width: 100%;
         }
 
         .topic-link:hover .topic-item {
+            transform: translateX(10px);
+            border-color: var(--primary);
             background: rgba(30, 30, 30, 0.95);
-            box-shadow: 0 8px 20px rgba(241, 196, 15, 0.3);
-            border-color: #f1c40f;
-            transform: translateX(5px);
-        }
-
-        .topic-link:hover .topic-item i {
-            transform: scale(1.1);
-        }
-
-        .topic-link:hover .topic-item span {
-            color: #f1c40f;
         }
 
         .topic-item i {
-            font-size: 2rem;
-            color: #f1c40f;
-            min-width: 40px;
+            font-size: 2.2rem;
+            color: var(--primary);
+            min-width: 50px;
             transition: 0.3s;
+        }
+
+        .topic-link:hover .topic-item i {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .topic-item span {
             font-weight: 600;
             font-size: 1.2rem;
-            color: #ffffff;
+            color: #fff;
             transition: 0.3s;
         }
 
-        /* Projetos / Ações */
+        /* ===== CARDS DE PROJETOS ===== */
         .projects-container {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
-            justify-content: center;
-        }
-
-        .project-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            max-width: 350px;
-            transition: 0.3s;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .project-card {
-            background: rgba(20, 20, 20, 0.95);
+            background: rgba(20, 20, 20, 0.9);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            transition: 0.3s;
+            transition: 0.4s;
+            border: 1px solid rgba(241, 196, 15, 0.1);
             height: 100%;
-            border: 1px solid #f1c40f33;
-            backdrop-filter: blur(5px);
+            position: relative;
         }
 
-        .project-link:hover .project-card {
-            transform: scale(1.03);
-            box-shadow: 0 15px 35px rgba(241, 196, 15, 0.3);
-            border-color: #f1c40f;
-        }
-
-        .project-link:hover .project-info h3 {
-            color: #f1c40f;
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-gold);
         }
 
         .project-img {
-            height: 200px;
+            height: 220px;
             background-size: cover;
             background-position: center;
-            border-bottom: 1px solid #f1c40f33;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.8));
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.05);
         }
 
         .project-info {
-            padding: 1.5rem;
+            padding: 2rem;
         }
 
-        .project-info h3 {
-            margin-bottom: 0.5rem;
-            color: #ffffff;
-            transition: 0.3s;
-        }
-
-        .project-info p {
-            color: #b0b0b0;
-            margin-bottom: 1rem;
-        }
-
-        .tag {
+        .project-tag {
             display: inline-block;
-            background: #f1c40f;
-            color: #000000;
+            background: var(--gradient-2);
+            color: var(--dark);
             padding: 0.3rem 1rem;
             border-radius: 50px;
             font-size: 0.8rem;
             font-weight: 600;
+            margin-bottom: 1rem;
         }
 
-        /* Equipe */
+        .project-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: #fff;
+        }
+
+        .project-info p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .project-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.3s;
+        }
+
+        .project-link:hover {
+            gap: 1rem;
+            color: #fff;
+        }
+
+        /* ===== SEÇÃO DA EQUIPE ===== */
         .team-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         .team-member {
             text-align: center;
-            background: rgba(20, 20, 20, 0.95);
-            padding: 2rem 1rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            border: 1px solid #f1c40f33;
+            background: rgba(20, 20, 20, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem 1.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(241, 196, 15, 0.1);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
         }
 
         .team-member:hover {
-            border-color: #f1c40f;
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-gold);
         }
 
-        .team-member img {
-            width: 120px;
-            height: 120px;
+        .member-img {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+        }
+
+        .member-img img {
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid #f1c40f;
-            margin-bottom: 1rem;
+            border: 4px solid var(--primary);
+            transition: 0.3s;
+        }
+
+        .member-img::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: var(--primary);
+            border-right-color: var(--primary);
+            animation: spin 3s linear infinite;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .team-member:hover .member-img::after {
+            opacity: 1;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .team-member h4 {
-            font-size: 1.2rem;
-            color: #ffffff;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
         }
 
         .team-member p {
-            color: #b0b0b0;
-            font-weight: 300;
+            color: var(--primary);
+            font-weight: 500;
         }
 
-        /* Formulário de contato */
-        .contact-form {
-            max-width: 700px;
+        .member-social {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .member-social a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+
+        .member-social a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* ===== FORMULÁRIO DE CONTATO ===== */
+        .contact-container {
+            max-width: 1000px;
             margin: 0 auto;
-            background: rgba(20, 20, 20, 0.95);
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 1px solid #f1c40f33;
-            backdrop-filter: blur(5px);
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2rem;
+            background: rgba(20, 20, 20, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            overflow: hidden;
+            border: 1px solid rgba(241, 196, 15, 0.1);
+        }
+
+        .contact-info {
+            background: var(--gradient-2);
+            padding: 3rem 2rem;
+            color: var(--dark);
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-detail i {
+            font-size: 1.5rem;
+            width: 40px;
+        }
+
+        .contact-form {
+            padding: 3rem 2rem;
         }
 
         .form-group {
@@ -397,116 +690,206 @@
 
         .form-group label {
             display: block;
-            font-weight: 600;
+            font-weight: 500;
             margin-bottom: 0.5rem;
-            color: #ffffff;
+            color: #fff;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 0.8rem 1rem;
-            border: 2px solid #333;
+            padding: 1rem 1.2rem;
+            border: 2px solid var(--gray);
             border-radius: 10px;
             font-family: inherit;
             transition: 0.3s;
-            background: rgba(0, 0, 0, 0.8);
-            color: #ffffff;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            font-size: 1rem;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #f1c40f;
-            background: #000;
+            border-color: var(--primary);
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 0 3px rgba(241, 196, 15, 0.1);
         }
 
         .btn-submit {
-            background: #f1c40f;
-            color: #000000;
+            background: var(--gradient-2);
+            color: var(--dark);
             border: none;
             padding: 1rem 2.5rem;
-            border-radius: 50px;
+            border-radius: 10px;
             font-weight: 600;
             cursor: pointer;
             transition: 0.3s;
             font-size: 1rem;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn-submit:hover {
-            background: #d4ac0d;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-gold);
         }
 
-        /* Rodapé */
+        /* ===== RODAPÉ ===== */
         footer {
-            background: #000000;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
             color: white;
             text-align: center;
-            padding: 2rem;
-            margin-top: 2rem;
-            border-top: 1px solid #f1c40f33;
+            padding: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid var(--primary);
             position: relative;
             z-index: 1;
         }
 
         .social-links {
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
         }
 
         .social-links a {
-            color: #e0e0e0;
-            font-size: 1.5rem;
-            margin: 0 0.8rem;
+            color: #fff;
+            font-size: 1.8rem;
+            margin: 0 1rem;
             transition: 0.3s;
+            display: inline-block;
         }
 
         .social-links a:hover {
-            color: #f1c40f;
+            color: var(--primary);
+            transform: translateY(-5px) rotate(5deg);
         }
 
-        footer p {
-            color: #b0b0b0;
+        .footer-links {
+            margin-bottom: 2rem;
         }
 
-        /* Responsividade */
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ===== ANIMAÇÕES ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.6s;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
                 gap: 1rem;
             }
+            
             .nav-links {
-                gap: 1rem;
+                gap: 0.5rem;
                 flex-wrap: wrap;
                 justify-content: center;
             }
+            
             .hero h1 {
                 font-size: 2.2rem;
             }
+            
             .section-title {
                 font-size: 2rem;
             }
-            .contact-form {
-                padding: 1.5rem;
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
             }
-            .section {
-                padding: 2rem 3%;
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
             }
         }
 
-        /* Animações sutis */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-            100% { transform: translateY(0px); }
+        /* ===== LOADING ANIMATION ===== */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: 0.5s;
         }
 
-        .feature-card:hover .feature-icon {
-            animation: float 2s ease-in-out infinite;
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--gray);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Símbolos matemáticos flutuantes -->
+    <div class="math-symbols" id="mathSymbols"></div>
+
     <!-- Cabeçalho -->
     <nav class="navbar">
         <div class="logo">Math<span>Edu</span></div>
@@ -520,186 +903,262 @@
         </ul>
     </nav>
 
-    <!-- Seção Hero -->
+    <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Matemática para a Vida</h1>
-            <p>Projeto de educação matemática inovador, unindo teoria e prática para transformar o aprendizado.</p>
-            <a href="#recursos" class="btn">Conheça o projeto</a>
+        <div class="hero-content animate__animated animate__fadeInUp">
+            <h1>Domine a Matemática de Forma Inteligente</h1>
+            <p>Plataforma completa com aulas interativas, exercícios personalizados e acompanhamento em tempo real</p>
+            <div class="hero-buttons">
+                <a href="#recursos" class="btn btn-primary">Começar Agora</a>
+                <a href="#projetos" class="btn btn-outline">Ver Projetos</a>
+            </div>
         </div>
     </section>
 
-    <!-- Recursos / Diferenciais -->
+    <!-- Recursos -->
     <section id="recursos" class="section">
-        <h2 class="section-title">Nossos Diferenciais</h2>
+        <h2 class="section-title">Por que escolher o <span>MathEdu</span>?</h2>
         <div class="features-container">
             <div class="feature-card">
-                <i class="fas fa-chalkboard-teacher feature-icon"></i>
-                <h3>Ensino Personalizado</h3>
-                <p>Acompanhamento individualizado respeitando o ritmo de cada estudante.</p>
+                <i class="fas fa-robot feature-icon"></i>
+                <h3>IA Personalizada</h3>
+                <p>Algoritmos inteligentes que se adaptam ao seu nível de aprendizado e ritmo.</p>
             </div>
             <div class="feature-card">
-                <i class="fas fa-gamepad feature-icon"></i>
-                <h3>Matemática Lúdica</h3>
-                <p>Jogos e desafios que tornam o aprendizado mais dinâmico e divertido.</p>
+                <i class="fas fa-chart-line feature-icon"></i>
+                <h3>Progresso em Tempo Real</h3>
+                <p>Acompanhe seu desenvolvimento com gráficos detalhados e métricas precisas.</p>
             </div>
             <div class="feature-card">
-                <i class="fas fa-project-diagram feature-icon"></i>
-                <h3>Projetos Práticos</h3>
-                <p>Aplicação da matemática em situações reais e interdisciplinares.</p>
+                <i class="fas fa-trophy feature-icon"></i>
+                <h3>Gamificação</h3>
+                <p>Ganhe pontos, medalhas e desafie seus amigos enquanto aprende.</p>
             </div>
             <div class="feature-card">
-                <i class="fas fa-users feature-icon"></i>
-                <h3>Comunidade Colaborativa</h3>
-                <p>Espaço para troca de experiências entre alunos e educadores.</p>
+                <i class="fas fa-video feature-icon"></i>
+                <h3>Aulas Interativas</h3>
+                <p>Vídeos, animações e exercícios interativos para um aprendizado completo.</p>
             </div>
         </div>
     </section>
 
-    <!-- Tópicos abordados - AGORA TODOS SÃO LINKS PARA QUESTÕES -->
+    <!-- Tópicos -->
     <section id="topicos" class="section">
-        <h2 class="section-title">O que você vai aprender</h2>
+        <h2 class="section-title">O que você vai <span>aprender</span></h2>
         <div class="topics-grid">
-            <a href="https://www.todamateria.com.br/exercicios-de-matematica/" target="_blank" rel="noopener noreferrer" class="topic-link">
+            <a href="https://www.todamateria.com.br/exercicios-de-matematica/" target="_blank" class="topic-link" style="--i:1">
                 <div class="topic-item">
                     <i class="fas fa-calculator"></i>
                     <span>Aritmética e operações</span>
                 </div>
             </a>
-            <a href="https://www.todamateria.com.br/exercicios-de-geometria-plana/" target="_blank" rel="noopener noreferrer" class="topic-link">
+            <a href="https://www.todamateria.com.br/exercicios-de-geometria-plana/" target="_blank" class="topic-link" style="--i:2">
                 <div class="topic-item">
                     <i class="fas fa-shapes"></i>
-                    <span>Geometria plana e espacial</span>
+                    <span>Geometria plana</span>
                 </div>
             </a>
-            <a href="https://www.todamateria.com.br/exercicios-de-algebra/" target="_blank" rel="noopener noreferrer" class="topic-link">
+            <a href="https://www.todamateria.com.br/exercicios-de-algebra/" target="_blank" class="topic-link" style="--i:3">
                 <div class="topic-item">
                     <i class="fas fa-square-root-alt"></i>
                     <span>Álgebra e funções</span>
                 </div>
             </a>
-            <a href="https://www.todamateria.com.br/exercicios-de-estatistica/" target="_blank" rel="noopener noreferrer" class="topic-link">
+            <a href="https://www.todamateria.com.br/exercicios-de-estatistica/" target="_blank" class="topic-link" style="--i:4">
                 <div class="topic-item">
                     <i class="fas fa-chart-line"></i>
-                    <span>Estatística e probabilidade</span>
+                    <span>Estatística</span>
                 </div>
             </a>
-            <a href="https://www.todamateria.com.br/exercicios-de-trigonometria/" target="_blank" rel="noopener noreferrer" class="topic-link">
+            <a href="https://www.todamateria.com.br/exercicios-de-trigonometria/" target="_blank" class="topic-link" style="--i:5">
                 <div class="topic-item">
                     <i class="fas fa-infinity"></i>
                     <span>Trigonometria</span>
                 </div>
             </a>
-            <a href="https://www.todamateria.com.br/exercicios-de-matematica-financeira/" target="_blank" rel="noopener noreferrer" class="topic-link">
+            <a href="https://www.todamateria.com.br/exercicios-de-matematica-financeira/" target="_blank" class="topic-link" style="--i:6">
                 <div class="topic-item">
-                    <i class="fas fa-cubes"></i>
+                    <i class="fas fa-coins"></i>
                     <span>Matemática financeira</span>
                 </div>
             </a>
-            <a href="https://www.todamateria.com.br/raciocinio-logico-exercicios/" target="_blank" rel="noopener noreferrer" class="topic-link">
+            <a href="https://www.todamateria.com.br/raciocinio-logico-exercicios/" target="_blank" class="topic-link" style="--i:7">
                 <div class="topic-item">
-                    <i class="fas fa-robot"></i>
+                    <i class="fas fa-brain"></i>
                     <span>Raciocínio lógico</span>
                 </div>
             </a>
-            <a href="https://www.todamateria.com.br/desafios-de-matematica/" target="_blank" rel="noopener noreferrer" class="topic-link">
+            <a href="https://www.todamateria.com.br/desafios-de-matematica/" target="_blank" class="topic-link" style="--i:8">
                 <div class="topic-item">
-                    <i class="fas fa-dragon"></i>
-                    <span>Desafios e competições</span>
+                    <i class="fas fa-trophy"></i>
+                    <span>Desafios</span>
                 </div>
             </a>
         </div>
     </section>
 
-    <!-- Projetos desenvolvidos -->
+    <!-- Projetos -->
     <section id="projetos" class="section">
-        <h2 class="section-title">Projetos em Ação</h2>
+        <h2 class="section-title">Projetos em <span>Ação</span></h2>
         <div class="projects-container">
-            <a href="https://example.com/projeto-geometria" target="_blank" rel="noopener noreferrer" class="project-link">
-                <div class="project-card">
-                    <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1509228468518-180dd4864904?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="project-info">
-                        <span class="tag">Matemática e Arte</span>
-                        <h3>Geometria nas construções</h3>
-                        <p>Estudo de formas geométricas em prédios históricos e maquetes.</p>
-                    </div>
+            <div class="project-card">
+                <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1509228468518-180dd4864904?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="project-info">
+                    <span class="project-tag">Matemática e Arte</span>
+                    <h3>Geometria nas construções</h3>
+                    <p>Explore como formas geométricas são aplicadas em prédios históricos e crie suas próprias maquetes.</p>
+                    <a href="#" class="project-link">Ver projeto <i class="fas fa-arrow-right"></i></a>
                 </div>
-            </a>
+            </div>
             
-            <a href="https://example.com/projeto-estatistica" target="_blank" rel="noopener noreferrer" class="project-link">
-                <div class="project-card">
-                    <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1554224154-26032ffc0d07?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="project-info">
-                        <span class="tag">Feira de Ciências</span>
-                        <h3>Estatística no cotidiano</h3>
-                        <p>Pesquisas sobre hábitos dos alunos e representação gráfica.</p>
-                    </div>
+            <div class="project-card">
+                <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1554224154-26032ffc0d07?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="project-info">
+                    <span class="project-tag">Ciência de Dados</span>
+                    <h3>Estatística no cotidiano</h3>
+                    <p>Analise dados reais da sua escola e crie visualizações impressionantes.</p>
+                    <a href="#" class="project-link">Ver projeto <i class="fas fa-arrow-right"></i></a>
                 </div>
-            </a>
+            </div>
             
-            <a href="https://example.com/projeto-logica" target="_blank" rel="noopener noreferrer" class="project-link">
-                <div class="project-card">
-                    <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
-                    <div class="project-info">
-                        <span class="tag">Tecnologia</span>
-                        <h3>Programação e lógica</h3>
-                        <p>Criação de jogos matemáticos com Scratch e Python.</p>
-                    </div>
+            <div class="project-card">
+                <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                <div class="project-info">
+                    <span class="project-tag">Programação</span>
+                    <h3>Lógica com Python</h3>
+                    <p>Aprenda programação resolvendo problemas matemáticos e crie seus próprios jogos.</p>
+                    <a href="#" class="project-link">Ver projeto <i class="fas fa-arrow-right"></i></a>
                 </div>
-            </a>
+            </div>
         </div>
     </section>
 
     <!-- Equipe -->
     <section id="equipe" class="section">
-        <h2 class="section-title">Nossa Equipe</h2>
+        <h2 class="section-title">Nossa <span>Equipe</span></h2>
         <div class="team-container">
             <div class="team-member">
-                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profa. Ana">
+                <div class="member-img">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Ana Lúcia">
+                </div>
                 <h4>Ana Lúcia</h4>
-                <p>Coordenadora pedagógica</p>
+                <p>Coordenadora</p>
+                <div class="member-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
             </div>
+            
             <div class="team-member">
-                <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Prof. Carlos">
+                <div class="member-img">
+                    <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="Carlos Mendes">
+                </div>
                 <h4>Carlos Mendes</h4>
-                <p>Especialista em álgebra</p>
+                <p>Especialista em Álgebra</p>
+                <div class="member-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
             </div>
+            
             <div class="team-member">
-                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Profa. Juliana">
+                <div class="member-img">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Juliana Ramos">
+                </div>
                 <h4>Juliana Ramos</h4>
-                <p>Matemática aplicada</p>
+                <p>Matemática Aplicada</p>
+                <div class="member-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
             </div>
+            
             <div class="team-member">
-                <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Prof. Rafael">
+                <div class="member-img">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Rafael Souza">
+                </div>
                 <h4>Rafael Souza</h4>
-                <p>Gamificação e tecnologia</p>
+                <p>Tecnologia Educacional</p>
+                <div class="member-social">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Contato -->
     <section id="contato" class="section">
-        <h2 class="section-title">Fale com a gente</h2>
-        <div class="contact-form">
-            <form action="#" method="post">
-                <div class="form-group">
-                    <label for="nome">Nome completo</label>
-                    <input type="text" id="nome" name="nome" required placeholder="Seu nome">
+        <h2 class="section-title">Fale <span>Conosco</span></h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Vamos conversar?</h3>
+                <p style="margin-bottom: 2rem; color: rgba(0,0,0,0.7);">Estamos aqui para ajudar você na jornada matemática</p>
+                
+                <div class="contact-detail">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Endereço</strong>
+                        <p style="color: rgba(0,0,0,0.7);">Av. Paulista, 1000 - São Paulo</p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                
+                <div class="contact-detail">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Telefone</strong>
+                        <p style="color: rgba(0,0,0,0.7);">(11) 99999-9999</p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="assunto">Assunto</label>
-                    <input type="text" id="assunto" name="assunto" placeholder="Ex: Quero participar">
+                
+                <div class="contact-detail">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Email</strong>
+                        <p style="color: rgba(0,0,0,0.7);">contato@mathedu.com</p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="mensagem">Mensagem</label>
-                    <textarea id="mensagem" name="mensagem" rows="5" required placeholder="Sua dúvida ou sugestão..."></textarea>
+                
+                <div class="contact-detail">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>Horário</strong>
+                        <p style="color: rgba(0,0,0,0.7);">Seg - Sex: 9h às 18h</p>
+                    </div>
                 </div>
-                <button type="submit" class="btn-submit">Enviar mensagem</button>
-            </form>
+            </div>
+            
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="nome">Nome completo</label>
+                        <input type="text" id="nome" name="nome" required placeholder="Digite seu nome">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="assunto">Assunto</label>
+                        <input type="text" id="assunto" name="assunto" placeholder="Sobre o que quer falar?">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem" name="mensagem" rows="5" required placeholder="Sua dúvida ou sugestão..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">
+                        Enviar mensagem <i class="fas fa-paper-plane" style="margin-left: 0.5rem;"></i>
+                    </button>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -710,9 +1169,119 @@
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-youtube"></i></a>
             <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-discord"></i></a>
         </div>
-        <p>Projeto MathEdu - Educação Matemática para todos</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem;">&copy; 2025 MathEdu. Todos os direitos reservados.</p>
+        
+        <div class="footer-links">
+            <a href="#home">Início</a>
+            <a href="#recursos">Recursos</a>
+            <a href="#topicos">Tópicos</a>
+            <a href="#projetos">Projetos</a>
+            <a href="#equipe">Equipe</a>
+            <a href="#contato">Contato</a>
+        </div>
+        
+        <div class="footer-copyright">
+            <p>© 2025 MathEdu - Plataforma Inteligente de Matemática. Todos os direitos reservados.</p>
+            <p style="margin-top: 0.5rem; font-size: 0.8rem;">Desenvolvido com <i class="fas fa-heart" style="color: var(--primary);"></i> para educação</p>
+        </div>
     </footer>
+
+    <script>
+        // Loading screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loading').classList.add('hidden');
+            }, 500);
+        });
+
+        // Símbolos matemáticos flutuantes
+        function createMathSymbols() {
+            const symbols = ['π', '∑', '∫', '√', '∞', '≠', '≤', '≥', '≈', '±', '×', '÷', 'α', 'β', 'θ', 'λ', 'Δ', 'Σ'];
+            const container = document.getElementById('mathSymbols');
+            
+            for (let i = 0; i < 30; i++) {
+                const symbol = document.createElement('div');
+                symbol.className = 'math-symbol';
+                symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                symbol.style.left = Math.random() * 100 + '%';
+                symbol.style.top = Math.random() * 100 + '%';
+                symbol.style.animationDelay = Math.random() * 5 + 's';
+                symbol.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                symbol.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                container.appendChild(symbol);
+            }
+        }
+        
+        createMathSymbols();
+
+        // Animação ao scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .topic-link, .project-card, .team-member').forEach(el => {
+            el.classList.add('animate-on-scroll');
+            observer.observe(el);
+        });
+
+        // Formulário de contato
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Aqui você pode adicionar a lógica para enviar o formulário
+            alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+            this.reset();
+        });
+
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Efeito de digitação no hero
+        const heroText = "Domine a Matemática de Forma Inteligente";
+        const heroElement = document.querySelector('.hero h1');
+        
+        // Pequeno efeito de hover nos cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const angleX = (y - centerY) / 20;
+                const angleY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-10px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+    </script>
 </body>
 </html>
