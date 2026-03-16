@@ -27,12 +27,15 @@
             --text-muted: #a0a0a0;
             --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --gradient-2: linear-gradient(135deg, #f1c40f, #e67e22);
+            --gradient-3: linear-gradient(135deg, #2ecc71, #27ae60);
+            --gradient-4: linear-gradient(135deg, #e74c3c, #c0392b);
             --shadow-sm: 0 2px 4px rgba(0,0,0,0.3);
             --shadow-md: 0 4px 6px rgba(0,0,0,0.4);
             --shadow-lg: 0 10px 15px rgba(0,0,0,0.5);
             --shadow-gold: 0 5px 20px rgba(241, 196, 15, 0.3);
+            --shadow-green: 0 5px 20px rgba(46, 204, 113, 0.3);
             
-            /* Novas variáveis de tamanho */
+            /* Variáveis de tamanho */
             --container-max-width: 1600px;
             --section-padding: 8rem 5%;
             --card-padding: 3rem;
@@ -291,6 +294,17 @@
             transform: translateY(-5px) scale(1.05);
         }
 
+        .btn-game {
+            background: var(--gradient-3);
+            color: var(--dark);
+            box-shadow: var(--shadow-green);
+        }
+
+        .btn-game:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(46, 204, 113, 0.5);
+        }
+
         /* ===== SEÇÕES GERAIS ===== */
         .section {
             padding: var(--section-padding);
@@ -400,6 +414,173 @@
             color: var(--text-muted);
             line-height: 1.8;
             font-size: 1.2rem;
+        }
+
+        /* ===== MINI GAMES SECTION ===== */
+        .games-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .game-card {
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            overflow: hidden;
+            transition: 0.4s;
+            border: 2px solid rgba(46, 204, 113, 0.2);
+            position: relative;
+        }
+
+        .game-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-green);
+        }
+
+        .game-header {
+            background: var(--gradient-3);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .game-header i {
+            font-size: 4rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .game-header h3 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .game-body {
+            padding: 2.5rem;
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat i {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat span {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .stat p {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .game-play {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .game-question {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .game-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .game-option {
+            background: var(--gray);
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .game-option:hover {
+            background: var(--secondary);
+            transform: scale(1.05);
+            color: var(--dark);
+        }
+
+        .game-option.correct {
+            background: var(--secondary);
+            animation: correct 0.5s ease;
+        }
+
+        .game-option.wrong {
+            background: var(--gradient-4);
+            animation: wrong 0.5s ease;
+        }
+
+        @keyframes correct {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes wrong {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .game-score {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .game-score span {
+            color: var(--secondary);
+            font-weight: 700;
+            font-size: 2rem;
+        }
+
+        .game-reset {
+            background: var(--gradient-3);
+            color: var(--dark);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+            margin-top: 1.5rem;
+        }
+
+        .game-reset:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-green);
         }
 
         /* ===== GRADE DE TÓPICOS ===== */
@@ -966,6 +1147,14 @@
                 font-size: 2.2rem;
             }
             
+            .games-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .game-options {
+                grid-template-columns: 1fr;
+            }
+            
             .topic-item {
                 padding: 1.8rem;
             }
@@ -1039,6 +1228,7 @@
             <li><a href="#home">Início</a></li>
             <li><a href="#recursos">Recursos</a></li>
             <li><a href="#topicos">Tópicos</a></li>
+            <li><a href="#games">Minigames</a></li>
             <li><a href="#projetos">Projetos</a></li>
             <li><a href="#equipe">Equipe</a></li>
             <li><a href="#contato">Contato</a></li>
@@ -1049,10 +1239,10 @@
     <section id="home" class="hero">
         <div class="hero-content animate__animated animate__fadeInUp">
             <h1>Domine a Matemática de Forma Inteligente</h1>
-            <p>Plataforma completa com aulas interativas, exercícios personalizados e acompanhamento em tempo real</p>
+            <p>Plataforma completa com aulas interativas, minigames divertidos e acompanhamento em tempo real</p>
             <div class="hero-buttons">
                 <a href="#recursos" class="btn btn-primary">Começar Agora</a>
-                <a href="#projetos" class="btn btn-outline">Ver Projetos</a>
+                <a href="#games" class="btn btn-game">Jogar Agora</a>
             </div>
         </div>
     </section>
@@ -1067,19 +1257,160 @@
                 <p>Algoritmos inteligentes que se adaptam ao seu nível de aprendizado e ritmo, oferecendo exercícios sob medida para suas necessidades.</p>
             </div>
             <div class="feature-card">
+                <i class="fas fa-gamepad feature-icon"></i>
+                <h3>Minigames Divertidos</h3>
+                <p>Aprenda matemática jogando! Desafios interativos que tornam o estudo uma experiência divertida e viciante.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-trophy feature-icon"></i>
+                <h3>Sistema de Conquistas</h3>
+                <p>Ganhe pontos, medalhas e desbloqueie conquistas enquanto avança nos estudos e nos jogos.</p>
+            </div>
+            <div class="feature-card">
                 <i class="fas fa-chart-line feature-icon"></i>
                 <h3>Progresso em Tempo Real</h3>
                 <p>Acompanhe seu desenvolvimento com gráficos detalhados e métricas precisas, identificando pontos fortes e áreas que precisam de atenção.</p>
             </div>
-            <div class="feature-card">
-                <i class="fas fa-trophy feature-icon"></i>
-                <h3>Gamificação</h3>
-                <p>Ganhe pontos, medalhas e desafie seus amigos enquanto aprende. Transforme o estudo em uma experiência divertida e motivadora.</p>
+        </div>
+    </section>
+
+    <!-- Mini Games Section -->
+    <section id="games" class="section">
+        <h2 class="section-title">Minigames de <span>Operações</span></h2>
+        <div class="games-container">
+            <!-- Game 1: Soma Rápida -->
+            <div class="game-card" id="game1">
+                <div class="game-header">
+                    <i class="fas fa-plus-circle"></i>
+                    <h3>Soma Rápida</h3>
+                </div>
+                <div class="game-body">
+                    <div class="game-stats">
+                        <div class="stat">
+                            <i class="fas fa-star"></i>
+                            <span id="score1">0</span>
+                            <p>Pontos</p>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-clock"></i>
+                            <span id="timer1">30</span>
+                            <p>Segundos</p>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-bolt"></i>
+                            <span id="level1">1</span>
+                            <p>Nível</p>
+                        </div>
+                    </div>
+                    
+                    <div class="game-play">
+                        <div class="game-question" id="question1">5 + 3 = ?</div>
+                        <div class="game-options" id="options1">
+                            <button class="game-option" onclick="checkAnswer(1, 8)">8</button>
+                            <button class="game-option" onclick="checkAnswer(1, 7)">7</button>
+                            <button class="game-option" onclick="checkAnswer(1, 9)">9</button>
+                            <button class="game-option" onclick="checkAnswer(1, 6)">6</button>
+                        </div>
+                    </div>
+                    
+                    <div class="game-score">
+                        <span id="message1">Complete 10 pontos para vencer!</span>
+                    </div>
+                    
+                    <button class="game-reset" onclick="resetGame(1)">
+                        <i class="fas fa-redo-alt"></i> Reiniciar Jogo
+                    </button>
+                </div>
             </div>
-            <div class="feature-card">
-                <i class="fas fa-video feature-icon"></i>
-                <h3>Aulas Interativas</h3>
-                <p>Vídeos, animações e exercícios interativos para um aprendizado completo e dinâmico, com explicações passo a passo.</p>
+
+            <!-- Game 2: Multiplicação Express -->
+            <div class="game-card" id="game2">
+                <div class="game-header">
+                    <i class="fas fa-times-circle"></i>
+                    <h3>Multiplicação Express</h3>
+                </div>
+                <div class="game-body">
+                    <div class="game-stats">
+                        <div class="stat">
+                            <i class="fas fa-star"></i>
+                            <span id="score2">0</span>
+                            <p>Pontos</p>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-clock"></i>
+                            <span id="timer2">30</span>
+                            <p>Segundos</p>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-bolt"></i>
+                            <span id="level2">1</span>
+                            <p>Nível</p>
+                        </div>
+                    </div>
+                    
+                    <div class="game-play">
+                        <div class="game-question" id="question2">4 × 6 = ?</div>
+                        <div class="game-options" id="options2">
+                            <button class="game-option" onclick="checkAnswer(2, 24)">24</button>
+                            <button class="game-option" onclick="checkAnswer(2, 20)">20</button>
+                            <button class="game-option" onclick="checkAnswer(2, 28)">28</button>
+                            <button class="game-option" onclick="checkAnswer(2, 22)">22</button>
+                        </div>
+                    </div>
+                    
+                    <div class="game-score">
+                        <span id="message2">Complete 10 pontos para vencer!</span>
+                    </div>
+                    
+                    <button class="game-reset" onclick="resetGame(2)">
+                        <i class="fas fa-redo-alt"></i> Reiniciar Jogo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Game 3: Desafio Misto -->
+            <div class="game-card" id="game3">
+                <div class="game-header">
+                    <i class="fas fa-random"></i>
+                    <h3>Desafio Misto</h3>
+                </div>
+                <div class="game-body">
+                    <div class="game-stats">
+                        <div class="stat">
+                            <i class="fas fa-star"></i>
+                            <span id="score3">0</span>
+                            <p>Pontos</p>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-clock"></i>
+                            <span id="timer3">30</span>
+                            <p>Segundos</p>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-bolt"></i>
+                            <span id="level3">1</span>
+                            <p>Nível</p>
+                        </div>
+                    </div>
+                    
+                    <div class="game-play">
+                        <div class="game-question" id="question3">15 - 7 = ?</div>
+                        <div class="game-options" id="options3">
+                            <button class="game-option" onclick="checkAnswer(3, 8)">8</button>
+                            <button class="game-option" onclick="checkAnswer(3, 7)">7</button>
+                            <button class="game-option" onclick="checkAnswer(3, 9)">9</button>
+                            <button class="game-option" onclick="checkAnswer(3, 6)">6</button>
+                        </div>
+                    </div>
+                    
+                    <div class="game-score">
+                        <span id="message3">Complete 10 pontos para vencer!</span>
+                    </div>
+                    
+                    <button class="game-reset" onclick="resetGame(3)">
+                        <i class="fas fa-redo-alt"></i> Reiniciar Jogo
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -1088,7 +1419,7 @@
     <section id="topicos" class="section">
         <h2 class="section-title">O que você vai <span>aprender</span></h2>
         <div class="topics-grid">
-            <!-- Aritmética -->
+            <!-- Matérias Básicas -->
             <a href="https://brasilescola.uol.com.br/matematica/aritmetica.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:1">
                 <div class="topic-item">
                     <i class="fas fa-calculator"></i>
@@ -1097,7 +1428,6 @@
                 </div>
             </a>
             
-            <!-- Geometria plana -->
             <a href="https://www.todamateria.com.br/geometria-plana/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:2">
                 <div class="topic-item">
                     <i class="fas fa-shapes"></i>
@@ -1106,7 +1436,6 @@
                 </div>
             </a>
             
-            <!-- Geometria espacial -->
             <a href="https://www.todamateria.com.br/geometria-espacial/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:3">
                 <div class="topic-item">
                     <i class="fas fa-cube"></i>
@@ -1115,7 +1444,6 @@
                 </div>
             </a>
             
-            <!-- Álgebra -->
             <a href="https://brasilescola.uol.com.br/matematica/algebra.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:4">
                 <div class="topic-item">
                     <i class="fas fa-square-root-alt"></i>
@@ -1124,7 +1452,6 @@
                 </div>
             </a>
             
-            <!-- Estatística -->
             <a href="https://www.todamateria.com.br/estatistica/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:5">
                 <div class="topic-item">
                     <i class="fas fa-chart-line"></i>
@@ -1133,7 +1460,6 @@
                 </div>
             </a>
             
-            <!-- Probabilidade -->
             <a href="https://brasilescola.uol.com.br/matematica/probabilidade.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:6">
                 <div class="topic-item">
                     <i class="fas fa-dice"></i>
@@ -1142,7 +1468,6 @@
                 </div>
             </a>
             
-            <!-- Trigonometria -->
             <a href="https://www.todamateria.com.br/trigonometria/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:7">
                 <div class="topic-item">
                     <i class="fas fa-infinity"></i>
@@ -1151,7 +1476,6 @@
                 </div>
             </a>
             
-            <!-- Matemática Financeira -->
             <a href="https://brasilescola.uol.com.br/matematica/matematica-financeira.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:8">
                 <div class="topic-item">
                     <i class="fas fa-coins"></i>
@@ -1160,7 +1484,6 @@
                 </div>
             </a>
             
-            <!-- Raciocínio Lógico -->
             <a href="https://www.todamateria.com.br/raciocinio-logico/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:9">
                 <div class="topic-item">
                     <i class="fas fa-brain"></i>
@@ -1169,7 +1492,6 @@
                 </div>
             </a>
             
-            <!-- Conjuntos -->
             <a href="https://brasilescola.uol.com.br/matematica/conjuntos.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:10">
                 <div class="topic-item">
                     <i class="fas fa-circle-nodes"></i>
@@ -1178,7 +1500,6 @@
                 </div>
             </a>
             
-            <!-- Equações -->
             <a href="https://www.todamateria.com.br/equacoes-matematicas/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:11">
                 <div class="topic-item">
                     <i class="fas fa-equals"></i>
@@ -1187,7 +1508,6 @@
                 </div>
             </a>
             
-            <!-- Cálculo -->
             <a href="https://brasilescola.uol.com.br/matematica/calculo.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:12">
                 <div class="topic-item">
                     <i class="fas fa-chart-area"></i>
@@ -1196,7 +1516,6 @@
                 </div>
             </a>
             
-            <!-- Números complexos -->
             <a href="https://www.todamateria.com.br/numeros-complexos/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:13">
                 <div class="topic-item">
                     <i class="fas fa-square"></i>
@@ -1205,7 +1524,6 @@
                 </div>
             </a>
             
-            <!-- Matrizes -->
             <a href="https://brasilescola.uol.com.br/matematica/matriz-determinante.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:14">
                 <div class="topic-item">
                     <i class="fas fa-table"></i>
@@ -1214,7 +1532,6 @@
                 </div>
             </a>
             
-            <!-- Logaritmos -->
             <a href="https://www.todamateria.com.br/logaritmo/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:15">
                 <div class="topic-item">
                     <i class="fas fa-chart-simple"></i>
@@ -1223,12 +1540,76 @@
                 </div>
             </a>
             
-            <!-- Progressões -->
             <a href="https://brasilescola.uol.com.br/matematica/progressoes.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:16">
                 <div class="topic-item">
                     <i class="fas fa-arrow-trend-up"></i>
                     <span>Progressões (PA/PG)</span>
                     <span class="study-badge">Sequências</span>
+                </div>
+            </a>
+
+            <!-- Novas matérias adicionadas -->
+            <a href="https://brasilescola.uol.com.br/matematica/porcentagem.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:17">
+                <div class="topic-item">
+                    <i class="fas fa-percent"></i>
+                    <span>Porcentagem</span>
+                    <span class="study-badge">%</span>
+                </div>
+            </a>
+            
+            <a href="https://www.todamateria.com.br/regra-de-tres/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:18">
+                <div class="topic-item">
+                    <i class="fas fa-arrows-alt-h"></i>
+                    <span>Regra de três</span>
+                    <span class="study-badge">Proporção</span>
+                </div>
+            </a>
+            
+            <a href="https://brasilescola.uol.com.br/matematica/sistema-metrico-decimal.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:19">
+                <div class="topic-item">
+                    <i class="fas fa-ruler"></i>
+                    <span>Sistema métrico</span>
+                    <span class="study-badge">Medidas</span>
+                </div>
+            </a>
+            
+            <a href="https://www.todamateria.com.br/fracoes/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:20">
+                <div class="topic-item">
+                    <i class="fas fa-pie-chart"></i>
+                    <span>Frações</span>
+                    <span class="study-badge">Partes</span>
+                </div>
+            </a>
+            
+            <a href="https://brasilescola.uol.com.br/matematica/numeros-decimais.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:21">
+                <div class="topic-item">
+                    <i class="fas fa-decimal"></i>
+                    <span>Números decimais</span>
+                    <span class="study-badge">Vírgula</span>
+                </div>
+            </a>
+            
+            <a href="https://www.todamateria.com.br/potenciacao/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:22">
+                <div class="topic-item">
+                    <i class="fas fa-exponent"></i>
+                    <span>Potenciação</span>
+                    <span class="study-badge">²³</span>
+                </div>
+            </a>
+            
+            <a href="https://brasilescola.uol.com.br/matematica/radiciacao.htm" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:23">
+                <div class="topic-item">
+                    <i class="fas fa-square-root-variable"></i>
+                    <span>Radiciação</span>
+                    <span class="study-badge">√</span>
+                </div>
+            </a>
+            
+            <a href="https://www.todamateria.com.br/mmc-e-mdc/" target="_blank" rel="noopener noreferrer" class="topic-link" style="--i:24">
+                <div class="topic-item">
+                    <i class="fas fa-divide"></i>
+                    <span>MMC e MDC</span>
+                    <span class="study-badge">Múltiplos</span>
                 </div>
             </a>
         </div>
@@ -1414,6 +1795,7 @@
             <a href="#home">Início</a>
             <a href="#recursos">Recursos</a>
             <a href="#topicos">Tópicos</a>
+            <a href="#games">Minigames</a>
             <a href="#projetos">Projetos</a>
             <a href="#equipe">Equipe</a>
             <a href="#contato">Contato</a>
@@ -1435,10 +1817,10 @@
 
         // Símbolos matemáticos flutuantes
         function createMathSymbols() {
-            const symbols = ['π', '∑', '∫', '√', '∞', '≠', '≤', '≥', '≈', '±', '×', '÷', 'α', 'β', 'θ', 'λ', 'Δ', 'Σ', '∏', '∇'];
+            const symbols = ['π', '∑', '∫', '√', '∞', '≠', '≤', '≥', '≈', '±', '×', '÷', 'α', 'β', 'θ', 'λ', 'Δ', 'Σ', '∏', '∇', '∂', '∅'];
             const container = document.getElementById('mathSymbols');
             
-            for (let i = 0; i < 40; i++) {
+            for (let i = 0; i < 50; i++) {
                 const symbol = document.createElement('div');
                 symbol.className = 'math-symbol';
                 symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
@@ -1467,7 +1849,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.feature-card, .topic-link, .project-card, .team-member').forEach(el => {
+        document.querySelectorAll('.feature-card, .topic-link, .project-card, .team-member, .game-card').forEach(el => {
             el.classList.add('animate-on-scroll');
             observer.observe(el);
         });
@@ -1514,6 +1896,171 @@
                 card.style.transform = '';
             });
         });
+
+        // Game state
+        const gameState = {
+            1: { score: 0, timer: 30, level: 1, active: true, interval: null },
+            2: { score: 0, timer: 30, level: 1, active: true, interval: null },
+            3: { score: 0, timer: 30, level: 1, active: true, interval: null }
+        };
+
+        // Question pools
+        const questions = {
+            1: [ // Soma
+                { q: '2 + 2 = ?', a: 4, options: [4, 3, 5, 2] },
+                { q: '5 + 3 = ?', a: 8, options: [8, 7, 9, 6] },
+                { q: '7 + 4 = ?', a: 11, options: [11, 10, 12, 9] },
+                { q: '9 + 6 = ?', a: 15, options: [15, 14, 16, 13] },
+                { q: '3 + 8 = ?', a: 11, options: [11, 10, 12, 9] },
+                { q: '12 + 7 = ?', a: 19, options: [19, 18, 20, 17] },
+                { q: '15 + 9 = ?', a: 24, options: [24, 23, 25, 22] },
+                { q: '20 + 13 = ?', a: 33, options: [33, 32, 34, 31] }
+            ],
+            2: [ // Multiplicação
+                { q: '2 × 3 = ?', a: 6, options: [6, 5, 7, 4] },
+                { q: '4 × 5 = ?', a: 20, options: [20, 19, 21, 18] },
+                { q: '6 × 7 = ?', a: 42, options: [42, 41, 43, 40] },
+                { q: '8 × 4 = ?', a: 32, options: [32, 31, 33, 30] },
+                { q: '9 × 6 = ?', a: 54, options: [54, 53, 55, 52] },
+                { q: '7 × 8 = ?', a: 56, options: [56, 55, 57, 54] },
+                { q: '5 × 9 = ?', a: 45, options: [45, 44, 46, 43] },
+                { q: '12 × 4 = ?', a: 48, options: [48, 47, 49, 46] }
+            ],
+            3: [ // Misto (soma, subtração, multiplicação)
+                { q: '15 - 7 = ?', a: 8, options: [8, 7, 9, 6] },
+                { q: '12 + 8 = ?', a: 20, options: [20, 19, 21, 18] },
+                { q: '9 × 3 = ?', a: 27, options: [27, 26, 28, 25] },
+                { q: '20 - 9 = ?', a: 11, options: [11, 10, 12, 9] },
+                { q: '7 × 4 = ?', a: 28, options: [28, 27, 29, 26] },
+                { q: '18 + 7 = ?', a: 25, options: [25, 24, 26, 23] },
+                { q: '16 - 8 = ?', a: 8, options: [8, 7, 9, 6] },
+                { q: '11 + 9 = ?', a: 20, options: [20, 19, 21, 18] }
+            ]
+        };
+
+        // Start timers
+        for (let gameId = 1; gameId <= 3; gameId++) {
+            startTimer(gameId);
+            generateQuestion(gameId);
+        }
+
+        function startTimer(gameId) {
+            gameState[gameId].interval = setInterval(() => {
+                if (!gameState[gameId].active) return;
+                
+                gameState[gameId].timer--;
+                document.getElementById(`timer${gameId}`).textContent = gameState[gameId].timer;
+                
+                if (gameState[gameId].timer <= 0) {
+                    clearInterval(gameState[gameId].interval);
+                    gameState[gameId].active = false;
+                    document.getElementById(`message${gameId}`).textContent = '⏰ Tempo esgotado! Reinicie para jogar novamente.';
+                    
+                    // Disable all option buttons
+                    document.querySelectorAll(`#game${gameId} .game-option`).forEach(btn => {
+                        btn.disabled = true;
+                    });
+                }
+            }, 1000);
+        }
+
+        function generateQuestion(gameId) {
+            if (!gameState[gameId].active) return;
+            
+            const pool = questions[gameId];
+            const question = pool[Math.floor(Math.random() * pool.length)];
+            
+            document.getElementById(`question${gameId}`).textContent = question.q;
+            
+            // Shuffle options
+            const shuffled = [...question.options].sort(() => Math.random() - 0.5);
+            const optionButtons = document.querySelectorAll(`#game${gameId} .game-option`);
+            
+            optionButtons.forEach((btn, index) => {
+                btn.textContent = shuffled[index];
+                btn.disabled = false;
+                btn.classList.remove('correct', 'wrong');
+                btn.onclick = () => checkAnswer(gameId, question.a);
+            });
+        }
+
+        function checkAnswer(gameId, correctAnswer) {
+            if (!gameState[gameId].active) return;
+            
+            const button = event.target;
+            const answer = parseInt(button.textContent);
+            
+            if (answer === correctAnswer) {
+                button.classList.add('correct');
+                gameState[gameId].score += 10;
+                document.getElementById(`score${gameId}`).textContent = gameState[gameId].score;
+                
+                if (gameState[gameId].score % 50 === 0) {
+                    gameState[gameId].level++;
+                    document.getElementById(`level${gameId}`).textContent = gameState[gameId].level;
+                }
+                
+                if (gameState[gameId].score >= 100) {
+                    gameState[gameId].active = false;
+                    clearInterval(gameState[gameId].interval);
+                    document.getElementById(`message${gameId}`).textContent = '🏆 Parabéns! Você venceu!';
+                } else {
+                    document.getElementById(`message${gameId}`).textContent = '✅ Correto! Continue assim!';
+                    setTimeout(() => generateQuestion(gameId), 500);
+                }
+            } else {
+                button.classList.add('wrong');
+                document.getElementById(`message${gameId}`).textContent = '❌ Tente novamente!';
+            }
+            
+            // Disable all buttons temporarily
+            document.querySelectorAll(`#game${gameId} .game-option`).forEach(btn => {
+                btn.disabled = true;
+            });
+            
+            setTimeout(() => {
+                if (gameState[gameId].active) {
+                    document.querySelectorAll(`#game${gameId} .game-option`).forEach(btn => {
+                        btn.disabled = false;
+                        btn.classList.remove('correct', 'wrong');
+                    });
+                }
+            }, 1000);
+        }
+
+        function resetGame(gameId) {
+            // Clear interval
+            if (gameState[gameId].interval) {
+                clearInterval(gameState[gameId].interval);
+            }
+            
+            // Reset state
+            gameState[gameId] = {
+                score: 0,
+                timer: 30,
+                level: 1,
+                active: true,
+                interval: null
+            };
+            
+            // Update UI
+            document.getElementById(`score${gameId}`).textContent = '0';
+            document.getElementById(`timer${gameId}`).textContent = '30';
+            document.getElementById(`level${gameId}`).textContent = '1';
+            document.getElementById(`message${gameId}`).textContent = 'Complete 100 pontos para vencer!';
+            
+            // Enable buttons
+            document.querySelectorAll(`#game${gameId} .game-option`).forEach(btn => {
+                btn.disabled = false;
+                btn.classList.remove('correct', 'wrong');
+            });
+            
+            // Generate new question
+            generateQuestion(gameId);
+            
+            // Restart timer
+            startTimer(gameId);
+        }
     </script>
 </body>
 </html>
